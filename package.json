@@ -1,5 +1,21 @@
 {
   "name": "chrome_overflow",
   "version": "1.0.0",
-  "description": "Helping developers with their bugs with the power of inline StackOverflow results.\"",
+  "dependencies": {},
+  "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
+  "script": {},
+  "main": "devtools.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/risamaki/ChromeOverflow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/risamaki/ChromeOverflow/issues"
+  },
+  "homepage": "https://github.com/risamaki/ChromeOverflow#readme"
 }
