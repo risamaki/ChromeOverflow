@@ -1,6 +1,5 @@
 {
   "manifest_version": 2,
-
   "name": "Chrome Overflow",
   "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
   "version": "0.01",
@@ -9,5 +8,5 @@
     "scripts": [],
     "page": []
   },
-  "devtools_page": "devtools.html"
+  "devtools_page": "console.html"
 }
