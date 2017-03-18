@@ -1,0 +1,6 @@
+{
+  "name": "chrome_overflow",
+  "version": "1.0.0",
+  "description": "\"Helping developers with their bugs with the power of inline StackOverflow results.\"",
+  "main": "devtools.js",
+}
