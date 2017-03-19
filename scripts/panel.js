@@ -152,32 +152,39 @@ function renderIssue(arrayQA, errorMsg) {
     collapsible.setAttribute("class", "collapse");
     panel.appendChild(collapsible);
 
+    var panelGroup = document.createElement("div");
+    panelGroup.setAttribute("class", "panel-group");
+    var qa = document.createElement("div");
+    qa.setAttribute("class", "panel");
+    qa.setAttribute("class", "panel-default");
+    collapsible.appendChild(qa);
     for (var i = 0; i < arrayQA.resultsLength; i++) {
-        var panelGroup = document.createElement("div");
-        panelGroup.setAttribute("class", "panel-group");
-        panelGroup.setAttribute("id", "#" + indexCounter + "" + i);
-
-        var qa = document.createElement("div");
-        qa.setAttribute("class", "panel");
-        qa.setAttribute("class", "panel-default");
-        collapsible.appendChild(qa);
-
         var answerBody = document.createElement("div");
+        answerBody.setAttribute("class", "panel");
         answerBody.setAttribute("class", "panel-header");
         qa.appendChild(answerBody);
 
         var answerRow = document.createElement("a");
         answerRow.setAttribute("data-toggle", "collapse");
-        answerRow.setAttribute("href", "#answer" + indexCounter + i);
-        answerRow.setAttribute("data-parent", "#" + indexCounter + "" + i);
+        answerRow.setAttribute("href", "answer" + indexCounter + i);
         answerRow.innerHTML = arrayQA.results[i].questionTitle;
         answerBody.appendChild(answerRow);
 
         var answerCollapsible = document.createElement("div");
-        answerCollapsible.setAttribute("id", "#answer" + indexCounter + i);
+        answerCollapsible.setAttribute("id", "answer" + indexCounter + i);
         answerCollapsible.setAttribute("class", "panel-collapse");
         answerCollapsible.setAttribute("class", "collapse");
+        answerRow.addEventListener("click", function (_indexCounter, _i) {
+            return function () {
+                jQuery("#answer" + _indexCounter + _i).toggleClass("in");
+            }
+        }(indexCounter, i));
         qa.appendChild(answerCollapsible);
+
+        var questionURL = document.createElement("a");
+        questionURL.setAttribute("href", "http://" + arrayQA.results[i].questionURL);
+        questionURL.innerHTML = "See this Question on Stack Overflow";
+        answerCollapsible.appendChild(questionURL);
 
         var innerAnswer = document.createElement("div");
         innerAnswer.setAttribute("class", "panel-body");

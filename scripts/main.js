@@ -1,4 +1,4 @@
-chrome.storage.sync.set({"chromeOverflow": []}, function(items){});
+chrome.storage.sync.set({"chromeOverflow": []}, function (items) {});
 
 var errors = [];
 
@@ -12,7 +12,7 @@ document.addEventListener('WindowError', function (e) {
     //console.log('toString: ', e.detail.toString);
     //console.log('is404: ', e.detail.is404);
     //console.log('src: ', e.detail.src);
-    
+
     if (errors.length > 0) {
         // check that previous error not the same as current error
         var previousError = errors[errors.length - 1];
@@ -23,14 +23,13 @@ document.addEventListener('WindowError', function (e) {
     }
     errors.push(error);
     // Save it using the Chrome extension storage API.
-    chrome.storage.sync.get("chromeOverflow", function(items) {
+    chrome.storage.sync.get("chromeOverflow", function (items) {
         var newResult = [];
         if (!chrome.runtime.error) {
             newResult = items.chromeOverflow;
         }
         newResult.push(error);
-        console.log(newResult);
-        chrome.storage.sync.set({"chromeOverflow": newResult}, function() {});
+        chrome.storage.sync.set({"chromeOverflow": newResult}, function () {});
     });
 });
 
@@ -45,7 +44,7 @@ function injectErrorListener() {
             stack: e.error.stack,
             toString: e.error.toString()
         };
-        document.dispatchEvent(new CustomEvent('WindowError', { detail: error }));
+        document.dispatchEvent(new CustomEvent('WindowError', {detail: error}));
     });
 
     // Catches 404 errors
@@ -57,14 +56,13 @@ function injectErrorListener() {
                 is404: true,
                 src: src
             };
-            document.dispatchEvent(new CustomEvent('WindowError', { detail: error }));
+            document.dispatchEvent(new CustomEvent('WindowError', {detail: error}));
         }
     }, true); // true to use this eventListener (capture phase) instead of bubbling up
 }
 
 //Inject code
 var script = document.createElement('script');
-console.log(injectErrorListener);
 script.textContent = '(' + injectErrorListener + '())';
 (document.head || document.documentElement).appendChild(script);
 script.parentNode.removeChild(script);
