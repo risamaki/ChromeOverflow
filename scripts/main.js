@@ -52,6 +52,7 @@ function injectErrorListener() {
 
 //Inject code
 var script = document.createElement('script');
+console.log(injectErrorListener);
 script.textContent = '(' + injectErrorListener + '())';
 (document.head || document.documentElement).appendChild(script);
 script.parentNode.removeChild(script);
@@ -63,18 +64,18 @@ var url = "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=rel
 function search(query, page, callback) {
     if (typeof query !== "string") throw new Error("Pass in a string!");
     var requestUrl = url + "&title=" + encodeURIComponent(query) +
-        "&page=" + page + "&pagesize=1";
+        "&page=" + page + "&pagesize=5";
     var ret = {};
     $.get(requestUrl).done(function (data) {
         processResults(data, function (val) {
-            callback(val);
+            callback(val, query);
         });
     }).fail(function (XMLHttpRequest) {
         ret.error = "Couldn't access StackExchange (Code " + XMLHttpRequest.status + ")";
         ret.results = [];
         ret.resultsLength = 0;
         ret.hasMore = false;
-        callback(ret);
+        callback(ret, query);
     });
 }
 
@@ -190,52 +191,30 @@ function renderErr(errorMsg){
 
 }
 
-function renderIssue(errorMsg, arrayQA){
+var indexCounter = 0;
+function renderIssue(arrayQA, errorMsg){
+    var panel = document.querySelector("#panel");
+    var body = document.createElement("div");
+    body.setAttribute("class", "panel-body");
+    panel.appendChild(body);
 
-    // QA collasping container items
-    var QAaccordion = document.create("div");
-    QAaccordion.setAttribute("id", "soAccordion");
-    QAaccordion.setAttribute("role", "tablist");
-    QAaccordion.setAttribute("aria-multiselectable", "true");
+    var errorMessage = document.createElement("a");
+    errorMessage.setAttribute("data-toggle", "collapse");
+    errorMessage.setAttribute("href", "#" + indexCounter);
+    errorMessage.innerHTML = errorMsg;
+    body.appendChild(errorMessage);
 
-    var QAcard = document.create("div");
-    QAcard.setAttribute("class", "card");
+    var collapsible = document.createElement("div");
+    collapsible.setAttribute("id", "" + indexCounter);
+    collapsible.setAttribute("class", "panel-collapse");
+    collapsible.setAttribute("class", "collapse");
+    panel.appendChild(collapsible);
 
-    var QAcardHeader = document.create("div");
-    QAcardHeader.setAttribute("class", "card-header");
-    QAcardHeader.setAttribute("role", "tab");
-    QAcardHeader.setAttribute("answer_id", "soHeader");
-    
-    var QAh5 = document.create("div");
-    QAh5.setAttribute("class", "mb-0");
-
-    var QAa = document.createElement("a")
-    QAa.setAttribute("class", "collapsed");
-    QAa.setAttribute("data-toggle", "collapse");
-    QAa.setAttribute("data-parent", "#soAccordion");
-    QAa.setAttribute("aria-expanded", "false");
-    QAa.setAttribute("aria-controls", "collapseSO");
-    QAa.setAttribute("href", "#collapseSO");
-
-    var QAcollapse = document.createElement("div");
-    QAcollapse.setAttribute("id", "collapseSO");
-    QAcollapse.setAttribute("class", "collapse");
-    QAcollapse.setAttribute("role", "tabpanel");
-    QAcollapse.setAttribute("aria-labelledby", "soHeader");
-
-    var QAblock = document.createElement("div");
-    QAblock.setAttribute("class", "card-block");
-    
-    var displayCount; 
-
-    if (arrayQA.length() > 5) {
-        displayCount = 5;
-    } else {
-        displayCount = arrayQA.length();
-    }
-
-    for (var i = 0; i < displayCount; i++){
-
+    for(var i = 0; i < arrayQA.resultsLength; i++) {
+        var qa = document.createElement("div");
+        qa.setAttribute("class", "panel-body");
+        qa.innerHTML = mdToHtml(arrayQA.results[i].answer_md)
+        collapsible.appendChild(qa);
     }
 }
 
@@ -243,29 +222,5 @@ var hasMore = false;
 var questionTitle, questionURL, answerURL, answerMD = "";
 var answerLength = 0;
 
-search("javascript", 1, function (val) {
-    // console.log(JSON.stringify(val));
-    hasMore = val.hasMore;
-    answerLength = val.resultsLength;
-    for (var i = 0; i < answerLength; i++) {
-        var queryRes = val.results[i];
-        questionTitle = queryRes.questionTitle;
-        questionURL = queryRes.questionURL;
-        answerURL = queryRes.answerURL;
-        answerMD = queryRes.answer_md;
-        var resObject = {
-            qTtl: questionTitle,
-            qURL: questionURL,
-            aURL: answerURL,
-            aMD: answerMD
-        };
-        // Todo: create HTML element with the above params?
-    }
 
-    // console.log("hm: " + hasMore);
-    // console.log("al: " + answerLength);
-    // console.log("qt: " + questionTitle);
-    // console.log("qu: " + questionURL);
-    // console.log("au: " + answerURL);
-    // console.log("am: " + answerMD);
-});
+$(document).ready(search("JavaScript", 1, renderIssue)); //test

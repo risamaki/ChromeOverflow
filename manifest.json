@@ -24,5 +24,6 @@
   "permissions": [
     "<all_urls>",
     "webRequest"
-  ]
+  ],
+  "options_page": "panel.html"
 }

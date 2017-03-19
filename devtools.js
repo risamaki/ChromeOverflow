@@ -8,7 +8,7 @@ chrome.devtools.panels.create("ChromeOverflow",
         if (runOnce) return;
         runOnce = true;
         // Do something, eg appending the text "Hello!" to the devtools panel
-        panelWindow.document.body.appendChild(document.createTextNode('Hello!'));
+        // panelWindow.document.body.appendChild(document.createTextNode('Hello!'));
       });
     }
 );
