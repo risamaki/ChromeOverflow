@@ -1,4 +1,4 @@
-var url = "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=relevance&tagged=JavaScript&site=stackoverflow&accepted=True&filter=!Su916jaHmcZfZh5aMc";
+var url = "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=relevance&tagged=JavaScript&site=stackoverflow&accepted=True&filter=!Su916jaHmcZfZh5aMc&key=3siWGPWi0UesJ1Q2D6RMgg((";
 function search(query, page, callback) {
     if (typeof query !== "string") throw new Error("Pass in a string!");
     var requestUrl = url + "&title=" + encodeURIComponent(query) +
@@ -29,7 +29,7 @@ function processResults(data, callback) {
     var promises = [];
     var answerURLParts = [
         "https://api.stackexchange.com/2.2/answers/",
-        "?&site=stackoverflow&filter=!SWJ_BpAceOSdpTaUxQ"
+        "?&site=stackoverflow&filter=!SWJ_BpAceOSdpTaUxQ&key=3siWGPWi0UesJ1Q2D6RMgg(("
     ];
     data.items.forEach(function (item) {
         var answerURL = answerURLParts[0] + item.accepted_answer_id + answerURLParts[1];
