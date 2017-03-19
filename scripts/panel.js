@@ -3,21 +3,21 @@ const CHROME_OVERFLOW = "chromeOverflow";
 /** Stack overflow - get results **/
 
 var url = "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=relevance&tagged=JavaScript&site=stackoverflow&accepted=True&filter=!Su916jaHmcZfZh5aMc&key=3siWGPWi0UesJ1Q2D6RMgg((";
-function search(query, page, callback) {
+function search(query, text, page, callback) {
     if (typeof query !== "string") throw new Error("Pass in a string!");
     var requestUrl = url + "&title=" + encodeURIComponent(query) +
         "&page=" + page + "&pagesize=5";
     var ret = {};
     $.get(requestUrl).done(function (data) {
         processResults(data, function (val) {
-            callback(val, query);
+            callback(val, text);
         });
     }).fail(function (XMLHttpRequest) {
         ret.error = "Couldn't access StackExchange (Code " + XMLHttpRequest.status + ")";
         ret.results = [];
         ret.resultsLength = 0;
         ret.hasMore = false;
-        callback(ret, query);
+        callback(ret, text);
     });
 }
 
@@ -72,65 +72,6 @@ function mdToHtml(md) {
         disableForced4SpacesIndentedSublists: true
     });
     return converter.makeHtml(md);
-}
-
-function renderErr(errorMsg) {
-    // Error collasping container items
-
-    var ERRcard = document.createElement("div");
-    ERRcard.setAttribute("class", "card");
-
-    var ERRcardHeader = document.createElement("div");
-    ERRcardHeader.setAttribute("class", "card-header");
-    ERRcardHeader.setAttribute("role", "tab");
-    ERRcardHeader.setAttribute("id", "errorHeading");
-
-    var ERRh5 = document.createElement("h5");
-    ERRh5.setAttribute("class", "mb-0");
-
-    var ERRa = document.createElement("a")
-    ERRa.setAttribute("class", "collapsed");
-    ERRa.setAttribute("data-toggle", "collapse");
-    ERRa.setAttribute("data-parent", "#errorAccordion");
-    ERRa.setAttribute("aria-expanded", "false");
-    ERRa.setAttribute("aria-controls", "collapseError");
-    ERRa.setAttribute("href", "#collapseError");
-
-    var ERRcollapse = document.createElement("div");
-    ERRcollapse.setAttribute("id", "collapseError");
-    ERRcollapse.setAttribute("class", "collapse");
-    ERRcollapse.setAttribute("role", "tabpanel");
-    ERRcollapse.setAttribute("aria-labelledby", "errorHeading");
-
-    var ERRblock = document.createElement("div");
-    ERRblock.setAttribute("class", "card-block");
-
-    if (!errorMsg.is404) {
-
-        ERRa.appendChild(errorMsg.stack);
-        ERRh5.appendChild(ERRa);
-        ERRcardHeader.appendChild(ERRh5);
-        ERRcard.appendChild(ERRcardHeader);
-
-        ERRcollapse.appendChild(ERRblock);
-        ERRcard.appendChild(ERRcollapse);
-
-        document.getElement("body").appendChild(ERRcard);
-
-    } else {
-
-        var errorText = "404:" + error.Msg
-        ERRa.appendChild(errorText)
-        ERRh5.appendChild(ERRa);
-        ERRcardHeader.appendChild(ERRh5);
-        ERRcard(appendChild(ERRcardHeader));
-
-        ERRcollapse.appendChild(ERRblock);
-        ERRcard.appendChild(ERRcollapse);
-
-        document.getElement("body").appendChild(ERRcard);
-    }
-
 }
 
 var indexCounter = 0;
@@ -224,11 +165,11 @@ function handleQueuedErrors() {
 function searchHelper(error) {
     if (error.is404) {
         //TODO: Have renderer handle 404s differently
-        search("404 File not found: " + error.src, 1, renderIssue);
-    } else if (error.name) {
-        search(error.name, 1, renderIssue);
-    } else if (error.toString) {
-        search(error.toString, 1, renderIssue);
+        search("404 File not found", "File not found: " + error.src, 1, renderIssue);
+    } else if (error.name && error.stack) {
+        search(error.name, error.stack, 1, renderIssue);
+    } else if (error.toString && error.stack) {
+        search(error.toString, error.stack, 1, renderIssue);
     }
 }
 
