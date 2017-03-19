@@ -2,5 +2,5 @@
 chrome.devtools.panels.create("Chrome Overflow",
   null,
   "panel.html",
-  null
+  "resources/icon/ChromeOverflow.png"
 );
