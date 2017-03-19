@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Chrome Overflow",
-  "version": "0.03",
+  "version": "0.04",
   "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
   "browser_action": {
     "default_icon": "resources/icons/ChromeOverflowLarge.png",
@@ -18,7 +18,8 @@
     {
       "matches": ["<all_urls>"],
       "run_at": "document_start",
-      "js": ["libraries/jquery-3.2.0.min.js", "scripts/main.js"],
+      "css": ["libraries/bootstrap.min.css"],
+      "js": ["libraries/jquery-3.2.0.min.js","libraries/bootstrap.min.js","scripts/main.js"],
       "all_frames": true
     }
   ],
