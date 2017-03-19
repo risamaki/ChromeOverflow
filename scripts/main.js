@@ -39,17 +39,11 @@ var url = "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=rel
 function search(query, page, callback) {
 	if (typeof query !== "string") throw new Error("Pass in a string!");
 	let requestUrl = url + "&title=" + encodeURIComponent(query) +
-		"&page=" + page + "pagesize=5";
+	"&page=" + page + "&pagesize=5";
 	let ret = {};
 	$.get(requestUrl).done(function(data) {
 		processResults(data, function(val) {
 			callback(val);
-		}).fail(function(XMLHttpRequest) {
-			ret.error = "Couldn't access StackExchange (Code " + XMLHttpRequest.status + ")";
-			ret.results = [];
-			ret.resultsLength = 0;
-			ret.hasMore = false;
-			callback(ret);
 		});
 	}).fail(function(XMLHttpRequest) {
 		ret.error = "Couldn't access StackExchange (Code " + XMLHttpRequest.status + ")";
@@ -85,10 +79,12 @@ function processResults(data, callback) {
 		r.forEach(function(result) {
 			ret.results.push({
 				questionTitle: result.questionData.title,
-				answerURL: "stackoverflow.com/a/" + result.answerData.answer_id,
-				answer_md: result.answerData.body_markdown
+				questionURL: "stackoverflow.com/q/" + result.questionData.question_id,
+				answerURL: "stackoverflow.com/a/" + result.answerData.items[0].answer_id,
+				answer_md: result.answerData.items[0].body_markdown
 			});
 		});
+		ret.resultsLength = ret.results.length;
 		callback(ret);
 	});
 }
