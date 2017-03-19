@@ -19,7 +19,7 @@
       "matches": ["<all_urls>"],
       "run_at": "document_start",
       "css": ["libraries/bootstrap.min.css"],
-      "js": ["libraries/jquery-3.2.0.min.js","libraries/bootstrap.min.js","scripts/main.js"],
+      "js": ["libraries/jquery-3.2.0.min.js","libraries/bootstrap.min.js", "libraries/showdown.min.js", "scripts/main.js"],
       "all_frames": true
     }
   ],
