@@ -211,11 +211,38 @@ function renderIssue(arrayQA, errorMsg){
     panel.appendChild(collapsible);
 
     for(var i = 0; i < arrayQA.resultsLength; i++) {
+        var panelGroup = document.createElement("div");
+        panelGroup.setAttribute("class", "panel-group");
+        panelGroup.setAttribute("id", "#" + indexCounter + "" + i);
+
         var qa = document.createElement("div");
-        qa.setAttribute("class", "panel-body");
-        qa.innerHTML = mdToHtml(arrayQA.results[i].answer_md)
+        qa.setAttribute("class", "panel");
+        qa.setAttribute("class", "panel-default");
         collapsible.appendChild(qa);
+
+        var answerBody = document.createElement("div");
+        answerBody.setAttribute("class", "panel-header");
+        qa.appendChild(answerBody);
+
+        var answerRow = document.createElement("a");
+        answerRow.setAttribute("data-toggle", "collapse");
+        answerRow.setAttribute("href", "#answer" + indexCounter + i);
+        answerRow.setAttribute("data-parent", "#" + indexCounter + "" + i);
+        answerRow.innerHTML = arrayQA.results[i].questionTitle;
+        answerBody.appendChild(answerRow);
+
+        var answerCollapsible = document.createElement("div");
+        answerCollapsible.setAttribute("id", "#answer" + indexCounter + i);
+        answerCollapsible.setAttribute("class", "panel-collapse");
+        answerCollapsible.setAttribute("class", "collapse");
+        qa.appendChild(answerCollapsible);
+
+        var innerAnswer = document.createElement("div");
+        innerAnswer.setAttribute("class", "panel-body");
+        innerAnswer.innerHTML = mdToHtml(arrayQA.results[i].answer_md);
+        answerCollapsible.appendChild(innerAnswer);
     }
+    indexCounter++;
 }
 
 var hasMore = false;
