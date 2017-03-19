@@ -74,6 +74,12 @@ search("javascript", 1, function (val) {
         questionURL = queryRes.questionURL;
         answerURL = queryRes.answerURL;
         answerMD = queryRes.answer_md;
+        var resObject = {
+            qTtl: questionTitle,
+            qURL: questionURL,
+            aURL: answerURL,
+            aMD:  answerMD
+        };
         // Todo: create HTML element with the above params?
     }
 
