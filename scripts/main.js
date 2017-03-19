@@ -9,8 +9,16 @@ document.addEventListener('WindowError', function (e) {
     //console.log('stack: ', e.detail.stack);
     //console.log('toString: ', e.detail.toString);
     //console.log('is404: ', e.detail.is404);
-    //console.log('url: ', e.detail.src);
-
+    //console.log('src: ', e.detail.src);
+    
+    if (errors.length > 0) {
+        // check that previous error not the same as current error
+        var previousError = errors[errors.length - 1];
+        if ((error.is404 && previousError.is404 && error.src === previousError.src) ||
+            (!error.is404 && !previousError.is404 && error.stack === previousError.stack)) {
+            return;
+        }
+    }
     errors.push(error);
 });
 
@@ -25,7 +33,6 @@ function injectErrorListener() {
             stack: e.error.stack,
             toString: e.error.toString()
         };
-
         document.dispatchEvent(new CustomEvent('WindowError', { detail: error }));
     });
 
