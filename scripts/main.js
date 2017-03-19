@@ -133,6 +133,7 @@ function mdToHtml(md) {
 
 function renderErr(errorMsg){
     // Error collasping container items
+
     var ERRcard = document.createElement("div");
     ERRcard.setAttribute("class", "card");
 
@@ -160,6 +161,33 @@ function renderErr(errorMsg){
 
     var ERRblock = document.createElement("div");
     ERRblock.setAttribute("class", "card-block");
+
+    if (!errorMsg.is404) {
+
+        ERRa.appendChild(errorMsg.stack);
+        ERRh5.appendChild(ERRa);
+        ERRcardHeader.appendChild(ERRh5);
+        ERRcard.appendChild(ERRcardHeader);
+
+        ERRcollapse.appendChild(ERRblock);
+        ERRcard.appendChild(ERRcollapse);
+
+        document.getElement("body").appendChild(ERRcard);
+
+    } else {
+
+        var errorText = "404:" + error.Msg
+        ERRa.appendChild(errorText)
+        ERRh5.appendChild(ERRa);
+        ERRcardHeader.appendChild(ERRh5);
+        ERRcard(appendChild(ERRcardHeader));
+
+        ERRcollapse.appendChild(ERRblock);
+        ERRcard.appendChild(ERRcollapse);
+        
+        document.getElement("body").appendChild(ERRcard);
+    }
+
 }
 
 function renderIssue(errorMsg, arrayQA){
