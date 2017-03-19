@@ -6,6 +6,11 @@
   "browser_action": {
     "default_icon": "resources/icons/ChromeOverflow.png"
   },
+  "icons": {
+    "16":  "resources/icons/ChromeOverflow16.png",
+    "48":  "resources/icons/ChromeOverflow48.png",
+    "128": "resources/icons/ChromeOverflow128.png"
+  },
   "devtools_page": "devtools.html",
   "minimum_chrome_version": "10.0",
   "background": {
