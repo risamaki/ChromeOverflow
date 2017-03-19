@@ -3,13 +3,9 @@
   "name": "Chrome Overflow",
   "version": "0.01",
   "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
-  "background_page":"background.js",
   "devtools_page": "devtools.html",
   "minimum_chrome_version": "10.0",
-  "default_locale": "en",
   "background": {
-    "scripts": ["libraries/jquery-3.2.0.min.js", "scripts/main.js"],
-    "page": []
-  },
-  "devtools_page": "console.html"
+    "scripts": ["background.js", "libraries/jquery-3.2.0.min.js", "scripts/main.js"]
+  }
 }
