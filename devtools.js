@@ -1,6 +1,6 @@
 // Create a new panel
-chrome.devtools.panels.create("Chrome Overflow",
-  null,
+chrome.devtools.panels.create("ChromeOverflow",
+  "resources/icons/ChromeOverflow128.png",
   "panel.html",
-  null
+  function(panel) {}
 );
