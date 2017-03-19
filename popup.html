@@ -7,32 +7,26 @@
 <html>
   <head>
     <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
-
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
+    <link rel="stylesheet" href="libraries/bootstrap.min.css">
+    <link rel="stylesheet" href = "stylesheets/popup.css">
     <script src="popup.js"></script>
   </head>
   <body>
-    <h1>yolo swag!!!!</h1>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+    <div id="container">
+      <p>Turn on/off extension: 
+        <div class="btn-group btn-toggle"> 
+          <button class="btn btn-sm btn-default active">ON</button>
+          <button class="btn btn-sm btn-primary">OFF</button>
+        </div>
+      </p>
+      <p>Number of questions to <br> get per error: </p> 
+    </div>
   </body>
 </html>
 
