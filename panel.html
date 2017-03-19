@@ -12,36 +12,43 @@
     </head>
     <body>
         <div style="text-align: center;"><img src="resources/icons/ChromeOverflow48.png"><span style="vertical-align: bottom; font-weight: 900; font-size: 30px; margin-left: 10px">Chrome Overflow</span></div>
-        <div id="accordion" role="tablist" aria-multiselectable="true">
+        <!-- Error Message Accordion -->
+        <div id="errorAccordion" role="tablist" aria-multiselectable="true">
             <div class="card">
-                <div class="card-header" role="tab" id="headingTwo">
+
+                <div class="card-header" role="tab" id="errorHeading">
                     <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Collapsible Group Item #1
+                        <a class="collapsed" data-toggle="collapse" data-parent="#errorAccordion" href="#collapseError" aria-expanded="false" aria-controls="collapseError">
+                            Error Accordion
                         </a>
                     </h5>
                 </div>
-                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+
+                <div id="collapseError" class="collapse" role="tabpanel" aria-labelledby="errorHeading">
                     <div class="card-block">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" role="tab" id="headingThree">
-                    <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Collapsible Group Item #2
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <div class="card-block">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        List of Stack Overflow Questions
+
+                        <!-- Stack Overflow Question/Answer Accordion -->
+                        <div id="soAccordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="soHeader">
+                                    <h5 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#soAccordion" href="#collapseSO" aria-expanded="false" aria-controls="collapseSO">
+                                            SO Question
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseSO" class="collapse" role="tabpanel" aria-labelledby="soHeader">
+                                    <div class="card-block">
+                                        Stack Overflow Answer:
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-
     </body>
 </html>
