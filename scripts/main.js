@@ -131,6 +131,86 @@ function mdToHtml(md) {
 	return converter.makeHtml(md);
 }
 
+function renderErr(errorMsg){
+    // Error collasping container items
+    var ERRcard = document.createElement("div");
+    ERRcard.setAttribute("class", "card");
+
+    var ERRcardHeader = document.createElement("div");
+    ERRcardHeader.setAttribute("class", "card-header");
+    ERRcardHeader.setAttribute("role", "tab");
+    ERRcardHeader.setAttribute("id", "errorHeading");
+
+    var ERRh5 = document.createElement("h5");
+    ERRh5.setAttribute("class", "mb-0");
+
+    var ERRa = document.createElement("a")
+    ERRa.setAttribute("class", "collapsed");
+    ERRa.setAttribute("data-toggle", "collapse");
+    ERRa.setAttribute("data-parent", "#errorAccordion");
+    ERRa.setAttribute("aria-expanded", "false");
+    ERRa.setAttribute("aria-controls", "collapseError");
+    ERRa.setAttribute("href", "#collapseError");
+
+    var ERRcollapse = document.createElement("div");
+    ERRcollapse.setAttribute("id", "collapseError");
+    ERRcollapse.setAttribute("class", "collapse");
+    ERRcollapse.setAttribute("role", "tabpanel");
+    ERRcollapse.setAttribute("aria-labelledby", "errorHeading");
+
+    var ERRblock = document.createElement("div");
+    ERRblock.setAttribute("class", "card-block");
+}
+
+function renderIssue(errorMsg, arrayQA){
+
+    // QA collasping container items
+    var QAaccordion = document.create("div");
+    QAaccordion.setAttribute("id", "soAccordion");
+    QAaccordion.setAttribute("role", "tablist");
+    QAaccordion.setAttribute("aria-multiselectable", "true");
+
+    var QAcard = document.create("div");
+    QAcard.setAttribute("class", "card");
+
+    var QAcardHeader = document.create("div");
+    QAcardHeader.setAttribute("class", "card-header");
+    QAcardHeader.setAttribute("role", "tab");
+    QAcardHeader.setAttribute("answer_id", "soHeader");
+    
+    var QAh5 = document.create("div");
+    QAh5.setAttribute("class", "mb-0");
+
+    var QAa = document.createElement("a")
+    QAa.setAttribute("class", "collapsed");
+    QAa.setAttribute("data-toggle", "collapse");
+    QAa.setAttribute("data-parent", "#soAccordion");
+    QAa.setAttribute("aria-expanded", "false");
+    QAa.setAttribute("aria-controls", "collapseSO");
+    QAa.setAttribute("href", "#collapseSO");
+
+    var QAcollapse = document.createElement("div");
+    QAcollapse.setAttribute("id", "collapseSO");
+    QAcollapse.setAttribute("class", "collapse");
+    QAcollapse.setAttribute("role", "tabpanel");
+    QAcollapse.setAttribute("aria-labelledby", "soHeader");
+
+    var QAblock = document.createElement("div");
+    QAblock.setAttribute("class", "card-block");
+    
+    var displayCount; 
+
+    if (arrayQA.length() > 5) {
+        displayCount = 5;
+    } else {
+        displayCount = arrayQA.length();
+    }
+
+    for (var i = 0; i < displayCount; i++){
+
+    }
+}
+
 var hasMore = false;
 var questionTitle, questionURL, answerURL, answerMD = "";
 var answerLength = 0;
