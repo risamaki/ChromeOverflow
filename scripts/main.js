@@ -240,6 +240,11 @@ function renderIssue(arrayQA, errorMsg){
         }(indexCounter, i));        
         qa.appendChild(answerCollapsible);
 
+        var questionURL = document.createElement("a");
+        questionURL.setAttribute("href", "http://" + arrayQA.results[i].questionURL);
+        questionURL.innerHTML = "See this Question on Stack Overflow"
+        answerCollapsible.appendChild(questionURL);
+
         var innerAnswer = document.createElement("div");
         innerAnswer.setAttribute("class", "panel-body");
         innerAnswer.innerHTML = mdToHtml(arrayQA.results[i].answer_md);
