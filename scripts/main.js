@@ -10,6 +10,7 @@ document.addEventListener('WindowError', function (e) {
 
     //console.log('stack: ', e.detail.stack);
     //console.log('toString: ', e.detail.toString);
+    //console.log('name: ', e.detail.name);
     //console.log('is404: ', e.detail.is404);
     //console.log('src: ', e.detail.src);
 
@@ -42,7 +43,8 @@ function injectErrorListener() {
         // e has other properties https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
         var error = {
             stack: e.error.stack,
-            toString: e.error.toString()
+            toString: e.error.toString(),
+            name: e.error.name
         };
         document.dispatchEvent(new CustomEvent('WindowError', {detail: error}));
     });

@@ -217,6 +217,8 @@ function searchHelper(error) {
     if (error.is404) {
         //TODO: Have renderer handle 404s differently
         search("404 File not found: " + error.src, 1, renderIssue);
+    } else if (error.name) {
+        search(error.name, 1, renderIssue);
     } else if (error.toString) {
         search(error.toString, 1, renderIssue);
     }
