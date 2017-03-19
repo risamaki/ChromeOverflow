@@ -4,11 +4,11 @@ function search(query, page, callback) {
     var requestUrl = url + "&title=" + encodeURIComponent(query) +
         "&page=" + page + "&pagesize=1";
     var ret = {};
-    $.get(requestUrl).done(function(data) {
-        processResults(data, function(val) {
+    $.get(requestUrl).done(function (data) {
+        processResults(data, function (val) {
             callback(val);
         });
-    }).fail(function(XMLHttpRequest) {
+    }).fail(function (XMLHttpRequest) {
         ret.error = "Couldn't access StackExchange (Code " + XMLHttpRequest.status + ")";
         ret.results = [];
         ret.resultsLength = 0;
@@ -31,15 +31,15 @@ function processResults(data, callback) {
         "https://api.stackexchange.com/2.2/answers/",
         "?&site=stackoverflow&filter=!SWJ_BpAceOSdpTaUxQ"
     ];
-    data.items.forEach(function(item) {
+    data.items.forEach(function (item) {
         var answerURL = answerURLParts[0] + item.accepted_answer_id + answerURLParts[1];
         promises.push(ignoreRejects($.get(answerURL), item));
     });
-    Promise.all(promises).then(function(r) {
-        r = r.filter(function(items) {
+    Promise.all(promises).then(function (r) {
+        r = r.filter(function (items) {
             return items.status === "resolved";
         });
-        r.forEach(function(result) {
+        r.forEach(function (result) {
             ret.results.push({
                 questionTitle: result.questionData.title,
                 questionURL: "stackoverflow.com/q/" + result.questionData.question_id,
@@ -53,9 +53,9 @@ function processResults(data, callback) {
 }
 
 function ignoreRejects(promise, item) {
-    return promise.then(function(v) {
+    return promise.then(function (v) {
         return {answerData: v, questionData: item, status: "resolved"}
-    }, function(e) {
+    }, function (e) {
         return {e: e, status: "rejected"}
     });
 }
@@ -64,15 +64,18 @@ var hasMore = false;
 var questionTitle, questionURL, answerURL, answerMD = "";
 var answerLength = 0;
 
-search("javascript", 1, function(val) {
+search("javascript", 1, function (val) {
     // console.log(JSON.stringify(val));
     hasMore = val.hasMore;
     answerLength = val.resultsLength;
-    var queryRes = val.results[0];
-    questionTitle = queryRes.questionTitle;
-    questionURL = queryRes.questionURL;
-    answerURL = queryRes.answerURL;
-    answerMD = queryRes.answer_md;
+    for (var i = 0; i < answerLength; i++) {
+        var queryRes = val.results[i];
+        questionTitle = queryRes.questionTitle;
+        questionURL = queryRes.questionURL;
+        answerURL = queryRes.answerURL;
+        answerMD = queryRes.answer_md;
+        // Todo: create HTML element with the above params?
+    }
 
     // console.log("hm: " + hasMore);
     // console.log("al: " + answerLength);
