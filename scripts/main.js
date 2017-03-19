@@ -42,6 +42,7 @@ function processResults(data, callback) {
 		r.forEach(function(result) {
 			ret.results.push({
 				questionTitle: result.questionData.title,
+				questionURL: "stackoverflow.com/q/" + result.questionData.question_id,
 				answerURL: "stackoverflow.com/a/" + result.answerData.items[0].answer_id,
 				answer_md: result.answerData.items[0].body_markdown
 			});
