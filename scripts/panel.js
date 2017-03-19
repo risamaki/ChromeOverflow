@@ -158,6 +158,12 @@ function renderIssue(arrayQA, errorMsg) {
     qa.setAttribute("class", "panel");
     qa.setAttribute("class", "panel-default");
     collapsible.appendChild(qa);
+    if (arrayQA.resultsLength === 0) {
+        var temp = document.createElement("div");
+        temp.innerHTML = "<i>No results on StackOverflow</i>";
+        temp.setAttribute("class", "panel-body");
+        qa.appendChild(temp);            
+    }
     for (var i = 0; i < arrayQA.resultsLength; i++) {
         var answerBody = document.createElement("div");
         answerBody.setAttribute("class", "panel");
@@ -168,12 +174,14 @@ function renderIssue(arrayQA, errorMsg) {
         answerRow.setAttribute("data-toggle", "collapse");
         answerRow.setAttribute("href", "answer" + indexCounter + i);
         answerRow.innerHTML = arrayQA.results[i].questionTitle;
+        answerRow.setAttribute("style", "padding-left: 15px");
         answerBody.appendChild(answerRow);
 
         var answerCollapsible = document.createElement("div");
         answerCollapsible.setAttribute("id", "answer" + indexCounter + i);
         answerCollapsible.setAttribute("class", "panel-collapse");
         answerCollapsible.setAttribute("class", "collapse");
+        answerCollapsible.setAttribute("style", "padding-left: 15px");
         answerRow.addEventListener("click", function (_indexCounter, _i) {
             return function () {
                 jQuery("#answer" + _indexCounter + _i).toggleClass("in");
