@@ -2,9 +2,12 @@
   // Required
   "manifest_version": 2,
   "name": "Chrome Overflow",
-  "version": "0.01",
+  "version": "0.02",
   "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
   "background_page":"background.js",
+  "browser_action": {
+    "default_icon": "resources/icons/ChromeOverflow.png"
+  },
   "devtools_page": "devtools.html",
   "minimum_chrome_version": "10.0"
 }
