@@ -4,7 +4,7 @@
   "version": "0.03",
   "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
   "browser_action": {
-    "default_icon": "resources/icons/ChromeOverflow.png",
+    "default_icon": "resources/icons/ChromeOverflowLarge.png",
     "default_popup": "popup.html"
   },
   "icons": {
