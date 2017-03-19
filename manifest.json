@@ -21,9 +21,13 @@
       "all_frames": true
     }
   ],
+  "web_accessible_resources": [
+    "scripts/panel.js"
+  ],
   "permissions": [
     "<all_urls>",
-    "webRequest"
+    "webRequest",
+    "storage"
   ],
   "options_page": "panel.html"
 }
