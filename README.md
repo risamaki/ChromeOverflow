@@ -5,6 +5,7 @@
 
 A Google Chrome extension for developers, by developers created during NWHacks 2017.
 
+## How it works
 ChromeOverflow provides a unified view of the top five Stack Overflow results for different exceptions you may 
 encounter while using the Google Chrome browser. 
 
@@ -16,3 +17,10 @@ encounter while using the Google Chrome browser.
 
 ![Image](https://raw.githubusercontent.com/risamaki/ChromeOverflow/master/resources/images/2017-03-19%2012_21_37-Create%20a%20new%20fiddle%20-%20JSFiddle.png)  
 *Read it right in the console, or open up the question to see more answers!*
+
+## Statistics
+* 1 Red Bulls drank
+* 50 KPop videos watched
+* 2 hours slept (total)
+* Numerous APIs consulted
+* 7 bags of Doritos eaten

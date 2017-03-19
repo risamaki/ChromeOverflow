@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Chrome Overflow",
-  "version": "0.05",
+  "version": "1.0",
   "description": "Helping developers with their bugs with the power of inline StackOverflow results.",
   "browser_action": {
     "default_icon": "resources/icons/ChromeOverflowLarge.png"
