@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Panel</title>
-</head>
-<body>
-  <h1>Endless tears</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Panel</title>
+        <!--stylesheets -->
+        <link rel="stylesheet" type="text/css" href="libraries/bootstrap.min.css"/>
+
+        <!--javascript -->
+        <script type="text/javascript" src="libraries/jquery-3.2.0.min.js"></script>
+        <script type="text/javascript" src="libraries/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div style="text-align: center;"><img src="resources/icons/ChromeOverflow48.png"><span style="vertical-align: bottom; font-weight: 900; font-size: 30px; margin-left: 10px">Chrome Overflow</span></div>
+        <!-- Error Message Accordion -->
+        <div id="errorAccordion" role="tablist" aria-multiselectable="true">
+            <div class="card">
+
+                <div class="card-header" role="tab" id="errorHeading">
+                    <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#errorAccordion" href="#collapseError" aria-expanded="false" aria-controls="collapseError">
+                            Error Accordion
+                        </a>
+                    </h5>
+                </div>
+
+                <div id="collapseError" class="collapse" role="tabpanel" aria-labelledby="errorHeading">
+                    <div class="card-block">
+                        List of Stack Overflow Questions
+
+                        <!-- Stack Overflow Question/Answer Accordion -->
+                        <div id="soAccordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="soHeader">
+                                    <h5 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#soAccordion" href="#collapseSO" aria-expanded="false" aria-controls="collapseSO">
+                                            SO Question
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseSO" class="collapse" role="tabpanel" aria-labelledby="soHeader">
+                                    <div class="card-block">
+                                        Stack Overflow Answer:
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

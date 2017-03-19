@@ -114,6 +114,16 @@ function ignoreRejects(promise, item) {
     });
 }
 
+function mdToHtml(md) {
+	var html;
+	var converter = new showdown.Converter({
+		headerLevelStart: 3,
+		tables: true,
+		disableForced4SpacesIndentedSublists: true
+	});
+	return converter.makeHtml(md);
+}
+
 var hasMore = false;
 var questionTitle, questionURL, answerURL, answerMD = "";
 var answerLength = 0;
