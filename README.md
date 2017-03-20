@@ -1,7 +1,7 @@
 
 <p float="right">
 <img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow128.png">
-<img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow48.png">
+<img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/images/ChromeOverflow.png">
 </p>
 
 <p align="center">
@@ -11,8 +11,9 @@ A Google Chrome extension for developers, by developers created during NWHacks 2
 ## Inspiration
 As teaching assistants for undergraduate level software construction classes, we often see students 
 report their errors or exceptions with little context of what the student has tried to resolve the issue. We thought of
-a better way to resolve this issue - letting the student take the first step in helping theirselves. A tool like
-ChromeOverflow can help programmers become more self sufficent in understanding and debugging common programming problems.
+a better way to resolve this issue - letting the student take the first step in helping theirselves by making a simple
+query to Stack Overflow. A tool like ChromeOverflow can help programmers become more self sufficient in understanding 
+and debugging common programming problems.
 
 ## How it works
 ChromeOverflow provides a unified view of the top five Stack Overflow results for different exceptions you may 
@@ -32,13 +33,13 @@ encounter while using the Google Chrome browser.
 - Sending detected errors to the ChromeOverflow tab in the developer tools
 
 ## Accomplishments that we're proud of
-It works! 
+It works*! 
 
 ## What we learned 
-Teamwork makes the dreamwork.
+Teamwork makes the dream work.
 
 ## What's next for ChromeOverflow?
-There are still many great opportunites for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
+There are still many great opportunities for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
 - A "Show More" button that shows more Stack Overflow results when clicked
 - Better user friendly UX when using the Chrome extension
 - Expanding this project past Chrome, abstracting it for error/exception messages in all languages and platforms!
