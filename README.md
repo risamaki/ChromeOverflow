@@ -1,9 +1,10 @@
 ![Image](https://raw.github.com/risamaki/ChromeOverflow/master/resources/images/Cover.png)
 
-![Image](https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow128.png)
-
+<p float="right">
 A Google Chrome extension for developers, by developers created during NWHacks 2017.
-
+<img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow128.png">
+</p>
+  
 ## Inspiration
 As teaching assistants for undergraduate level software construction classes, we often see students 
 report their errors or exceptions with little context of what the student has tried to resolve the issue. We thought of
