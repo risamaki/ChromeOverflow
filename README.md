@@ -30,7 +30,7 @@ It works!
 Teamwork makes the dreamwork.
 
 ## What's next for ChromeOverflow?
-There are still many great oppourtunites for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
+There are still many great opportunites for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
 - A "Show More" button that shows more Stack Overflow results when clicked
 - Better user friendly UX when using the Chrome extension
 - Expanding this project past Chrome, abstracting it for error/exception messages in all languages and platforms!
