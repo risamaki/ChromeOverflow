@@ -1,10 +1,13 @@
-![Image](https://raw.github.com/risamaki/ChromeOverflow/master/resources/images/Cover.png)
 
 <p float="right">
-A Google Chrome extension for developers, by developers created during NWHacks 2017.
 <img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow128.png">
+<img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow48.png">
 </p>
-  
+
+<p align="center">
+A Google Chrome extension for developers, by developers created during NWHacks 2017.
+</p>
+
 ## Inspiration
 As teaching assistants for undergraduate level software construction classes, we often see students 
 report their errors or exceptions with little context of what the student has tried to resolve the issue. We thought of
@@ -29,6 +32,8 @@ It works!
 
 ## What we learned 
 Teamwork makes the dreamwork.
+
+## Challenges
 
 ## What's next for ChromeOverflow?
 There are still many great opportunites for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
