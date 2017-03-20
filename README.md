@@ -1,6 +1,6 @@
 
-<p float="right">
-<img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow128.png">
+<p float="right", align="center">
+<img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/BetterIcon.png">
 <img src="https://raw.github.com/risamaki/ChromeOverflow/master/resources/images/ChromeOverflow.png">
 </p>
 
