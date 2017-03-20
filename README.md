@@ -1,9 +1,14 @@
 ![Image](https://raw.github.com/risamaki/ChromeOverflow/master/resources/images/Cover.png)
 
-# ChromeOverflow
 ![Image](https://raw.github.com/risamaki/ChromeOverflow/master/resources/icons/ChromeOverflow128.png)
 
 A Google Chrome extension for developers, by developers created during NWHacks 2017.
+
+## Inspiration
+As teaching assistants for undergraduate level software construction classes, we often see students 
+report their errors or exceptions with little context of what the student has tried to resolve the issue. We thought of
+a better way to resolve this issue - letting the student take the first step in helping theirselves. A tool like
+ChromeOverflow can help programmers become more self sufficent in understanding and debugging common programming problems.
 
 ## How it works
 ChromeOverflow provides a unified view of the top five Stack Overflow results for different exceptions you may 
@@ -17,6 +22,19 @@ encounter while using the Google Chrome browser.
 
 ![Image](https://raw.githubusercontent.com/risamaki/ChromeOverflow/master/resources/images/2017-03-19%2012_21_37-Create%20a%20new%20fiddle%20-%20JSFiddle.png)  
 *Read it right in the console, or open up the question to see more answers!*
+
+## Accomplishments that we're proud of
+It works! 
+
+## What we learned 
+Teamwork makes the dreamwork.
+
+## What's next for ChromeOverflow?
+There are still many great oppourtunites for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
+- A "Show More" button that shows more Stack Overflow results when clicked
+- Better user friendly UX when using the Chrome extension
+- Expanding this project past Chrome, abstracting it for error/exception messages in all languages and platforms!
+
 
 ## Statistics
 * 1 Red Bulls drank
