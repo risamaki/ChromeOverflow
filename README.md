@@ -27,13 +27,15 @@ encounter while using the Google Chrome browser.
 ![Image](https://raw.githubusercontent.com/risamaki/ChromeOverflow/master/resources/images/2017-03-19%2012_21_37-Create%20a%20new%20fiddle%20-%20JSFiddle.png)  
 *Read it right in the console, or open up the question to see more answers!*
 
+## Challenges
+- Handling the listening of many different types of JavaScript errors
+- Sending detected errors to the ChromeOverflow tab in the developer tools
+
 ## Accomplishments that we're proud of
 It works! 
 
 ## What we learned 
 Teamwork makes the dreamwork.
-
-## Challenges
 
 ## What's next for ChromeOverflow?
 There are still many great opportunites for extending ChromeOverflow! For this project, we have numerous backlogged ideas:
