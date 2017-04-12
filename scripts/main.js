@@ -1,7 +1,3 @@
-chrome.storage.sync.set({"chromeOverflow": []}, function (items) {});
-
-var errors = [];
-
 document.addEventListener('WindowError', function (e) {
     // STACK and toString are the only useful ones.
     // toString = name + message
@@ -14,30 +10,14 @@ document.addEventListener('WindowError', function (e) {
     //console.log('is404: ', e.detail.is404);
     //console.log('src: ', e.detail.src);
 
-    if (errors.length > 0) {
-        // check that previous error not the same as current error
-        var previousError = errors[errors.length - 1];
-        if ((error.is404 && previousError.is404 && error.src === previousError.src) ||
-            (!error.is404 && !previousError.is404 && error.stack === previousError.stack)) {
-            return;
-        }
-    }
-    errors.push(error);
-    // Save it using the Chrome extension storage API.
-    chrome.storage.sync.get("chromeOverflow", function (items) {
-        var newResult = [];
-        if (!chrome.runtime.error) {
-            newResult = items.chromeOverflow;
-        }
-        newResult.push(error);
-        chrome.storage.sync.set({"chromeOverflow": newResult}, function () {});
+    chrome.runtime.sendMessage({
+        message: error
     });
 });
 
 // Capture event in webpage context as error event object is null in Content Script context.
 // https://stackoverflow.com/questions/20323600/how-to-get-errors-stack-trace-in-chrome-extension-content-script/20399910#20399910
 function injectErrorListener() {
-
     // Catches uncaught errors
     window.addEventListener('error', function (e) {
         // e has other properties https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error

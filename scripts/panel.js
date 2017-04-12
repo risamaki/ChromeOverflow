@@ -76,10 +76,10 @@ function mdToHtml(md) {
 
 var indexCounter = 0;
 function renderIssue(arrayQA, errorMsg) {
-    var panel = document.querySelector("#panel");
+    var panelElem = panel.document.body.querySelector("#panel");
     var body = document.createElement("div");
     body.setAttribute("class", "panel-body");
-    panel.appendChild(body);
+    panelElem.appendChild(body);
 
     var errorMessage = document.createElement("a");
     errorMessage.setAttribute("data-toggle", "collapse");
@@ -91,7 +91,7 @@ function renderIssue(arrayQA, errorMsg) {
     collapsible.setAttribute("id", "" + indexCounter);
     collapsible.setAttribute("class", "panel-collapse");
     collapsible.setAttribute("class", "collapse");
-    panel.appendChild(collapsible);
+    panelElem.appendChild(collapsible);
 
     var panelGroup = document.createElement("div");
     panelGroup.setAttribute("class", "panel-group");
@@ -147,21 +147,6 @@ var hasMore = false;
 var questionTitle, questionURL, answerURL, answerMD = "";
 var answerLength = 0;
 
-
-function handleQueuedErrors() {
-    chrome.storage.sync.get(CHROME_OVERFLOW, function (items) {
-        if (!chrome.runtime.error) {
-            var results = items.chromeOverflow;
-            for (var i = 0; i < results.length; i++) {
-                var result = results[i];
-                searchHelper(result);
-            }
-        }
-        chrome.storage.sync.toRemove(CHROME_OVERFLOW, function (items) {
-        });
-    });
-}
-
 function searchHelper(error) {
     if (error.is404) {
         //TODO: Have renderer handle 404s differently
@@ -173,4 +158,7 @@ function searchHelper(error) {
     }
 }
 
-$(document).ready(handleQueuedErrors());
+function clearErrors() {
+    var panelElem = panel.document.body.querySelector("#panel");
+    panelElem.innerHTML = "";
+}
