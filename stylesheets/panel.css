@@ -1,0 +1,4 @@
+#panel .not-collapsible {
+    pointer-events: none;
+    color: black;
+}

@@ -75,7 +75,7 @@ function mdToHtml(md) {
 }
 
 var indexCounter = 0;
-function renderIssue(arrayQA, errorMsg) {
+function renderIssue(arrayQA, errorMsg, notCollapsible) {
     var panelElem = panel.document.body.querySelector("#panel");
     var body = document.createElement("div");
     body.setAttribute("class", "panel-body");
@@ -85,61 +85,66 @@ function renderIssue(arrayQA, errorMsg) {
     errorMessage.setAttribute("data-toggle", "collapse");
     errorMessage.setAttribute("href", "#" + indexCounter);
     errorMessage.innerHTML = errorMsg;
+	if (notCollapsible) {
+		errorMessage.className += "not-collapsible";
+	}
     body.appendChild(errorMessage);
 
-    var collapsible = document.createElement("div");
-    collapsible.setAttribute("id", "" + indexCounter);
-    collapsible.setAttribute("class", "panel-collapse");
-    collapsible.setAttribute("class", "collapse");
-    panelElem.appendChild(collapsible);
+	if (!notCollapsible) {
+		var collapsible = document.createElement("div");
+		collapsible.setAttribute("id", "" + indexCounter);
+		collapsible.setAttribute("class", "panel-collapse");
+		collapsible.setAttribute("class", "collapse");
+		panelElem.appendChild(collapsible);
 
-    var panelGroup = document.createElement("div");
-    panelGroup.setAttribute("class", "panel-group");
-    var qa = document.createElement("div");
-    qa.setAttribute("class", "panel");
-    qa.setAttribute("class", "panel-default");
-    collapsible.appendChild(qa);
-    if (arrayQA.resultsLength === 0) {
-        var temp = document.createElement("div");
-        temp.innerHTML = "<i>No results on StackOverflow</i>";
-        temp.setAttribute("class", "panel-body");
-        qa.appendChild(temp);            
-    }
-    for (var i = 0; i < arrayQA.resultsLength; i++) {
-        var answerBody = document.createElement("div");
-        answerBody.setAttribute("class", "panel");
-        answerBody.setAttribute("class", "panel-header");
-        qa.appendChild(answerBody);
+		var panelGroup = document.createElement("div");
+		panelGroup.setAttribute("class", "panel-group");
+		var qa = document.createElement("div");
+		qa.setAttribute("class", "panel");
+		qa.setAttribute("class", "panel-default");
+		collapsible.appendChild(qa);
+		if (arrayQA.resultsLength === 0) {
+			var temp = document.createElement("div");
+			temp.innerHTML = "<i>No results on StackOverflow</i>";
+			temp.setAttribute("class", "panel-body");
+			qa.appendChild(temp);
+		}
+		for (var i = 0; i < arrayQA.resultsLength; i++) {
+			var answerBody = document.createElement("div");
+			answerBody.setAttribute("class", "panel");
+			answerBody.setAttribute("class", "panel-header");
+			qa.appendChild(answerBody);
 
-        var answerRow = document.createElement("a");
-        answerRow.setAttribute("data-toggle", "collapse");
-        answerRow.setAttribute("href", "answer" + indexCounter + i);
-        answerRow.innerHTML = arrayQA.results[i].questionTitle;
-        answerRow.setAttribute("style", "padding-left: 15px");
-        answerBody.appendChild(answerRow);
+			var answerRow = document.createElement("a");
+			answerRow.setAttribute("data-toggle", "collapse");
+			answerRow.setAttribute("href", "answer" + indexCounter + i);
+			answerRow.innerHTML = arrayQA.results[i].questionTitle;
+			answerRow.setAttribute("style", "padding-left: 15px");
+			answerBody.appendChild(answerRow);
 
-        var answerCollapsible = document.createElement("div");
-        answerCollapsible.setAttribute("id", "answer" + indexCounter + i);
-        answerCollapsible.setAttribute("class", "panel-collapse");
-        answerCollapsible.setAttribute("class", "collapse");
-        answerCollapsible.setAttribute("style", "padding-left: 15px");
-        answerRow.addEventListener("click", function (_indexCounter, _i) {
-            return function () {
-                jQuery("#answer" + _indexCounter + _i).toggleClass("in");
-            }
-        }(indexCounter, i));
-        qa.appendChild(answerCollapsible);
+			var answerCollapsible = document.createElement("div");
+			answerCollapsible.setAttribute("id", "answer" + indexCounter + i);
+			answerCollapsible.setAttribute("class", "panel-collapse");
+			answerCollapsible.setAttribute("class", "collapse");
+			answerCollapsible.setAttribute("style", "padding-left: 15px");
+			answerRow.addEventListener("click", function (_indexCounter, _i) {
+				return function () {
+					jQuery("#answer" + _indexCounter + _i).toggleClass("in");
+				}
+			}(indexCounter, i));
+			qa.appendChild(answerCollapsible);
 
-        var questionURL = document.createElement("a");
-        questionURL.setAttribute("href", "http://" + arrayQA.results[i].questionURL);
-        questionURL.innerHTML = "See this Question on Stack Overflow";
-        answerCollapsible.appendChild(questionURL);
+			var questionURL = document.createElement("a");
+			questionURL.setAttribute("href", "http://" + arrayQA.results[i].questionURL);
+			questionURL.innerHTML = "See this Question on Stack Overflow";
+			answerCollapsible.appendChild(questionURL);
 
-        var innerAnswer = document.createElement("div");
-        innerAnswer.setAttribute("class", "panel-body");
-        innerAnswer.innerHTML = mdToHtml(arrayQA.results[i].answer_md);
-        answerCollapsible.appendChild(innerAnswer);
-    }
+			var innerAnswer = document.createElement("div");
+			innerAnswer.setAttribute("class", "panel-body");
+			innerAnswer.innerHTML = mdToHtml(arrayQA.results[i].answer_md);
+			answerCollapsible.appendChild(innerAnswer);
+		}
+	}
     indexCounter++;
 }
 
@@ -150,7 +155,7 @@ var answerLength = 0;
 function searchHelper(error) {
     if (error.is404) {
         //TODO: Have renderer handle 404s differently
-        search("404 File not found", "File not found: " + error.src, 1, renderIssue);
+        renderIssue(null, "File not found: " + error.src, true);
     } else if (error.toString && error.stack) {
 	    var displayText = error.toString;
 	    if (error.src) {
