@@ -34,8 +34,11 @@ function injectErrorListener() {
 		// e has other properties https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
 		var error = {
 			stack: e.error.stack,
-			toString: e.error.toString(),
-			name: e.error.name
+			toString: e.message || e.error.toString(),
+			name: e.error.name,
+			src: e.filename,
+			line: e.lineno,
+			col: e.colno
 		};
 		document.dispatchEvent(new CustomEvent('WindowError', {detail: error}));
 	});

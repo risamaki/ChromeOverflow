@@ -151,10 +151,19 @@ function searchHelper(error) {
     if (error.is404) {
         //TODO: Have renderer handle 404s differently
         search("404 File not found", "File not found: " + error.src, 1, renderIssue);
-    } else if (error.name !== "ReferenceError" && error.toString && error.stack) {
-        search(error.toString, error.toString, 1, renderIssue);
-    } else if (error.name && error.stack) {
-        search(error.name, error.stack, 1, renderIssue);
+    } else if (error.toString && error.stack) {
+	    var displayText = error.toString;
+	    if (error.src) {
+		    displayText += " (" + error.src;
+		    if (error.line) {
+			    displayText += ":" + error.line;
+			    if (error.col) {
+				    displayText += ":" + error.col;
+			    }
+		    }
+		    displayText += ")";
+	    }
+        search(error.toString, displayText, 1, renderIssue);
     }
 }
 
