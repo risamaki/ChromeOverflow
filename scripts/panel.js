@@ -152,7 +152,7 @@ function searchHelper(error) {
         //TODO: Have renderer handle 404s differently
         search("404 File not found", "File not found: " + error.src, 1, renderIssue);
     } else if (error.name !== "ReferenceError" && error.toString && error.stack) {
-        search(error.toString, error.stack, 1, renderIssue);
+        search(error.toString, error.toString, 1, renderIssue);
     } else if (error.name && error.stack) {
         search(error.name, error.stack, 1, renderIssue);
     }
