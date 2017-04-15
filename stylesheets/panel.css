@@ -2,3 +2,12 @@
     pointer-events: none;
     color: black;
 }
+
+.inner-answer {
+    margin-bottom: 30px;
+}
+
+.answer-panel .question-url {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
