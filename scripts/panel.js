@@ -10,14 +10,14 @@ function search(query, text, page, callback) {
 	var ret = {};
 	$.get(requestUrl).done(function (data) {
 		processResults(data, function (val) {
-			callback(val, text);
+			callback(val, text, false, query);
 		});
 	}).fail(function (XMLHttpRequest) {
 		ret.error = "Couldn't access StackExchange (Code " + XMLHttpRequest.status + ")";
 		ret.results = [];
 		ret.resultsLength = 0;
 		ret.hasMore = false;
-		callback(ret, text);
+		callback(ret, text, false, query);
 	});
 }
 
@@ -74,36 +74,53 @@ function mdToHtml(md) {
 }
 
 var indexCounter = 0;
-function renderIssue(arrayQA, errorMsg, notCollapsible) {
+function renderIssue(arrayQA, errorMsg, notCollapsible, query) {
 	var panelElem = panel.document.body.querySelector("#panel");
 
 	var panelGroup = document.createElement("div");
 	panelGroup.className += "panel-group";
+	panelElem.appendChild(panelGroup);
 
 	var qa = document.createElement("div");
 	qa.className += "panel panel-default";
+	panelGroup.appendChild(qa);
 
 	var panelHeading = document.createElement("div");
 	panelHeading.className += "panel-heading";
+	qa.appendChild(panelHeading);
 
 	var panelTitle = document.createElement("h4");
 	panelTitle.className += "panel-title";
-
-	var errorMessage = document.createElement("a");
-	errorMessage.setAttribute("data-toggle", "collapse");
-	errorMessage.setAttribute("href", "#collapseQ" + indexCounter);
-	errorMessage.setAttribute("data-target", '#collapseQ' + indexCounter);
-	errorMessage.className += "collapsed";
-	errorMessage.innerHTML = errorMsg;
-	if (notCollapsible) {
-		errorMessage.className += " not-collapsible";
-	}
-
-	panelElem.appendChild(panelGroup);
-	panelGroup.appendChild(qa);
-	qa.appendChild(panelHeading);
 	panelHeading.appendChild(panelTitle);
-	panelTitle.appendChild(errorMessage);
+
+	var errorMessageDiv = document.createElement("div");
+	errorMessageDiv.className += "error-message panel-message";
+	var errorMessageA = document.createElement("a");
+	errorMessageA.setAttribute("data-toggle", "collapse");
+	errorMessageA.setAttribute("href", "#collapseQ" + indexCounter);
+	errorMessageA.setAttribute("data-target", '#collapseQ' + indexCounter);
+	errorMessageA.className += "collapsed";
+	errorMessageA.innerHTML = errorMsg;
+	if (notCollapsible) {
+		errorMessageA.className += " not-collapsible";
+	}
+	errorMessageDiv.appendChild(errorMessageA);
+	panelTitle.appendChild(errorMessageDiv);
+
+	var searchGoogleDiv = document.createElement("div");
+	searchGoogleDiv.className += "search-google";
+	var searchGoogleA = document.createElement("a");
+	if (query) {
+		searchGoogleA.setAttribute("href", "http://google.com/#q=" + query);
+	} else {
+		searchGoogleA.setAttribute("href", "http://google.com/#q=" + errorMsg);
+	}
+	searchGoogleA.setAttribute("target", "_blank");
+	var searchGoogleImg = document.createElement("img");
+	searchGoogleImg.setAttribute("src", "resources/images/ic_search_36px.svg");
+	searchGoogleA.appendChild(searchGoogleImg);
+	searchGoogleDiv.appendChild(searchGoogleA);
+	panelTitle.appendChild(searchGoogleDiv);
 
 	if (!notCollapsible) {
 		var answers = document.createElement("div");
@@ -131,7 +148,7 @@ function renderIssue(arrayQA, errorMsg, notCollapsible) {
 			panelAnswersGroup.appendChild(answerPanel);
 
 			var answerPanelHeading = document.createElement("div");
-			answerPanelHeading.className += "panel-heading";
+			answerPanelHeading.className += "panel-heading panel-message";
 			answerPanel.appendChild(answerPanelHeading);
 
 			var answerTitle = document.createElement("a");
@@ -161,6 +178,7 @@ function renderIssue(arrayQA, errorMsg, notCollapsible) {
 
 			var questionURL = document.createElement("a");
 			questionURL.setAttribute("href", "http://" + arrayQA.results[i].questionURL);
+			questionURL.setAttribute("target", "_blank");
 			questionURL.innerHTML = "See this Question on Stack Overflow";
 			questionURL.className += "question-url";
 			answerBody.appendChild(questionURL);

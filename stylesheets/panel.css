@@ -11,3 +11,23 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.panel-title a {
+    word-wrap: break-word;
+}
+
+.search-google {
+    display: inline-block;
+    right: 16px;
+    position: absolute;
+    margin-top: -20px;
+}
+
+.error-message {
+    width: calc(100% - 34px);
+}
+
+.panel-message a {
+    width: 100%;
+    display: block;
+}
