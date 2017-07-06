@@ -8,7 +8,7 @@
 A Google Chrome extension for developers, by developers created during NWHacks 2017.
 </p>
 
-Download [here](/ChromeOverflow.crx) and try it out!
+Download [here](https://github.com/risamaki/ChromeOverflow/raw/master/ChromeOverflow.crx) and try it out!
 
 ## Inspiration
 As teaching assistants for undergraduate level software construction classes, we often see students 
