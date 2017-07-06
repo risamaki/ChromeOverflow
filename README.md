@@ -8,6 +8,8 @@
 A Google Chrome extension for developers, by developers created during NWHacks 2017.
 </p>
 
+Download [here](/ChromeOverflow.crx) and try it out!
+
 ## Inspiration
 As teaching assistants for undergraduate level software construction classes, we often see students 
 report their errors or exceptions with little context of what the student has tried to resolve the issue. We thought of
